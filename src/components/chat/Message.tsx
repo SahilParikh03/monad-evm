@@ -1,4 +1,4 @@
-import { User, Bot } from 'lucide-react';
+import { User } from 'lucide-react';
 import type { Message as MessageType } from '../../types';
 
 interface MessageProps {
@@ -11,8 +11,12 @@ const Message = ({ message }: MessageProps) => {
   return (
     <div className={`flex gap-4 ${isUser ? 'justify-end' : 'justify-start'}`}>
       {!isUser && (
-        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-matrix-purple-dark flex items-center justify-center shadow-[0_0_10px_rgba(168,85,247,0.5)]">
-          <Bot size={18} />
+        <div className="flex-shrink-0 w-8 h-8 rounded-full overflow-hidden shadow-[0_0_10px_rgba(168,85,247,0.5)]">
+          <img
+            src="/nadia-avatar.png"
+            alt="Nadia"
+            className="w-full h-full object-cover"
+          />
         </div>
       )}
 
