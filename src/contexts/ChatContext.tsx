@@ -53,7 +53,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
     // Call webhook to get AI response
     setIsTyping(true);
 
-    const webhookUrl = 'https://tatianna.app.n8n.cloud/webhook-test/54a59d2f-1384-4e98-aaad-5d8decd115b2';
+    const webhookUrl = 'https://tatianna.app.n8n.cloud/webhook/54a59d2f-1384-4e98-aaad-5d8decd115b2';
 
     fetch(webhookUrl, {
       method: 'POST',

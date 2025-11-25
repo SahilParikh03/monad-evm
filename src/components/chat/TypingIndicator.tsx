@@ -6,7 +6,7 @@ const TypingIndicator = () => {
         <span className="w-2 h-2 bg-matrix-purple rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
         <span className="w-2 h-2 bg-matrix-purple rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
       </div>
-      <span className="text-sm text-gray-400">Monad AI is thinking...</span>
+      <span className="text-sm text-gray-400">Nadia is thinking ^-^</span>
     </div>
   );
 };
