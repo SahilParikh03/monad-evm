@@ -1,5 +1,5 @@
 import { User, Bot } from 'lucide-react';
-import { Message as MessageType } from '../../types';
+import type { Message as MessageType } from '../../types';
 
 interface MessageProps {
   message: MessageType;
