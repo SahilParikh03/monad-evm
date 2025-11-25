@@ -27,7 +27,7 @@ const Sidebar = () => {
         `}
       >
         <div className="p-4 border-b border-gray-800/50">
-          <h1 className="text-xl font-bold text-matrix-purple mb-4">Nadie16Z</h1>
+          <h1 className="text-xl font-bold text-matrix-purple mb-4">Nadia16Z</h1>
           <NewChatButton />
         </div>
         <ChatHistory />
