@@ -67,7 +67,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
       .then(response => response.json())
       .then(data => {
         // Handle response - support multiple formats
-        const aiContent = data.response || data.message || data.text || JSON.stringify(data);
+        const aiContent = data.response || data.message || data.text || data.output || JSON.stringify(data);
 
         const aiMessage: Message = {
           id: (Date.now() + 1).toString(),
