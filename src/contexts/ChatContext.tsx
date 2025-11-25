@@ -50,25 +50,61 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
       )
     );
 
-    // Simulate AI response
+    // Call webhook to get AI response
     setIsTyping(true);
-    setTimeout(() => {
-      const aiMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        content: `This is a simulated response about Monad blockchain. In production, this would connect to your LLM backend specializing in Monad blockchain technology.`,
-        role: 'assistant',
-        timestamp: new Date(),
-      };
 
-      setChats(prevChats =>
-        prevChats.map(chat =>
-          chat.id === currentChatId
-            ? { ...chat, messages: [...chat.messages, aiMessage] }
-            : chat
-        )
-      );
-      setIsTyping(false);
-    }, 1500);
+    const webhookUrl = 'https://tatianna.app.n8n.cloud/webhook-test/54a59d2f-1384-4e98-aaad-5d8decd115b2';
+
+    fetch(webhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        message: content,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Handle response - support multiple formats
+        const aiContent = data.response || data.message || data.text || JSON.stringify(data);
+
+        const aiMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          content: aiContent,
+          role: 'assistant',
+          timestamp: new Date(),
+        };
+
+        setChats(prevChats =>
+          prevChats.map(chat =>
+            chat.id === currentChatId
+              ? { ...chat, messages: [...chat.messages, aiMessage] }
+              : chat
+          )
+        );
+        setIsTyping(false);
+      })
+      .catch(error => {
+        console.error('Error calling webhook:', error);
+
+        // Show error message to user
+        const errorMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          content: 'Sorry, I encountered an error connecting to the AI service. Please try again.',
+          role: 'assistant',
+          timestamp: new Date(),
+        };
+
+        setChats(prevChats =>
+          prevChats.map(chat =>
+            chat.id === currentChatId
+              ? { ...chat, messages: [...chat.messages, errorMessage] }
+              : chat
+          )
+        );
+        setIsTyping(false);
+      });
   };
 
   return (
